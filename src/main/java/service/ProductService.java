@@ -10,12 +10,26 @@ public class ProductService {
     @Autowired
     ProductDao productDao;
 
-    public List<Product> getAll(){
+    public List<Product> getAll() {
         return productDao.getList();
     }
 
-    public void save(Product product){
-         productDao.save(product);
+    public void save(Product product) {
+        productDao.save(product);
     }
+
+    public void edit(Product product) {
+        productDao.edit(product);
+    }
+
+    public Product findById(int id) {
+        return productDao.findById(id);
+
+    }
+
+    public void delete(int id) {
+        productDao.delete(id);
+    }
+
 
 }

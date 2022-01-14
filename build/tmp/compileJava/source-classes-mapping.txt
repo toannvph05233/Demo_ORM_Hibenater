@@ -1,14 +1,18 @@
-config/ApplicationInitializer.java
- config.ApplicationInitializer
-model/Category.java
- model.Category
 model/Product.java
  model.Product
-controller/ProductController.java
- controller.ProductController
+model/Category.java
+ model.Category
+dao/CategoryDao.java
+ dao.CategoryDao
+config/ApplicationInitializer.java
+ config.ApplicationInitializer
+service/CategoryService.java
+ service.CategoryService
+service/ProductService.java
+ service.ProductService
 config/ApplicationConfig.java
  config.ApplicationConfig
 dao/ProductDao.java
  dao.ProductDao
-service/ProductService.java
- service.ProductService
+controller/ProductController.java
+ controller.ProductController

@@ -1,5 +1,6 @@
 package config;
 
+import dao.CategoryDao;
 import dao.ProductDao;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +22,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import service.CategoryService;
 import service.ProductService;
 
 import javax.persistence.EntityManager;
@@ -71,6 +73,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         registry.addResourceHandler("/i/**")
                 .addResourceLocations("file:/Users/johntoan98gmail.com/Desktop/project/Module4/BTVN_Module4_Tuan1/src/main/webapp/");
     }
+
     // Thay đổi kích thước file upload
     @Bean
     public CommonsMultipartResolver multipartResolver() {
@@ -78,7 +81,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         multipartResolver.setMaxUploadSizePerFile(10000000);
         return multipartResolver;
     }
-
 
 
     //    Cấu hình để kết nối CSDL
@@ -91,7 +93,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         dataSource.setPassword("12345678");
         return dataSource;
     }
-// cấu hình thằng chứa entity
+
+    // cấu hình thằng chứa entity
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -102,7 +105,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         em.setJpaProperties(additionalProperties());
         return em;
     }
-// cấu hình để cho hibernate tự động tạo bảng cho mình.
+
+    // cấu hình để cho hibernate tự động tạo bảng cho mình.
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
@@ -119,14 +123,24 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 
 
     @Bean
-    public ProductDao getProductDao(){
+    public ProductDao getProductDao() {
         return new ProductDao();
     }
+
     @Bean
-    public ProductService getProductService(){
+    public CategoryDao categoryDao() {
+        return new CategoryDao();
+    }
+
+    @Bean
+    public ProductService getProductService() {
         return new ProductService();
     }
 
+    @Bean
+    public CategoryService categoryService() {
+        return new CategoryService();
+    }
 
 
 }
